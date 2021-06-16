@@ -30,7 +30,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -41,7 +41,22 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:3|max:100',
+            'image' => 'required|max:255|url',
+            'price' => 'required|numeric',
+        ]);
+
+        $form_data = $request->all();
+
+        $comic = new Comic();
+
+        $comic->fill($form_data);
+        $comic->save();
+        
+        return redirect()->route('comics.show', [
+            'comic' => $comic->id
+        ]);
     }
 
     /**
@@ -52,7 +67,9 @@ class ComicController extends Controller
      */
     public function show($id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+
+        return view('comics.show', compact('comic'));
     }
 
     /**
