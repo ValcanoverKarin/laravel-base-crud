@@ -5,7 +5,17 @@
         <div class="container">
             <h1>Add New Comic</h1>
 
-            <!-- Start Form -->
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            
             <form action="{{ route('comics.store') }}" method="post">
                 @csrf
                 @method('POST')
@@ -39,11 +49,12 @@
                     <label for="price">Price</label>
                     <input type="text" class="form-control" id="price" name="price" required value="{{ old('price') }}">
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             
             </form>
-            <!-- End Form -->
+            
+
         </div>
     </section>
 @endsection

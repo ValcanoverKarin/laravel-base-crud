@@ -42,7 +42,7 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|min:3|max:100',
+            'title' => 'required|min:2|max:100',
             'image' => 'required|max:255|url',
             'price' => 'required|numeric',
         ]);
