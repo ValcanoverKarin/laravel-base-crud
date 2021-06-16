@@ -3,7 +3,7 @@
 @section('main_content')
     <section>
         <div class="container">
-            <h1>dettagli fumetto</h1>
+            <h1>Dettagli fumetto</h1>
 
             <div class="row">
                 <div class="col">

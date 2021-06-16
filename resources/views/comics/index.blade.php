@@ -3,7 +3,7 @@
 @section('main_content')
     <section>
         <div class="container">
-            <h1>lista fumetti</h1>
+            <h1>Lista fumetti</h1>
 
             <div class="row">
                 @foreach($comics as $comic)
@@ -15,6 +15,19 @@
                             <a href="{{ route('comics.show', [
                                 'comic' => $comic['id']
                             ]) }}" class="btn btn-primary">View Details</a>
+
+                            <div>
+                                <a href="{{ route('comics.edit', [
+                                    'comic' => $comic->id
+                                ]) }}" class="btn btn-secondary">Modify Item</a>
+                            </div>
+
+                            <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+
+                                <input class="btn btn-danger" type="submit" value="Delete">    
+                            </form>
                         </div>
                       </div>
                 </div>
